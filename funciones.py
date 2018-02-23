@@ -19,3 +19,20 @@ def cod_municipio(municipio,arbol):
 	cod=arbol.xpath('//municipio[contains(text(),municipio)]/@value')
 	codigo=cod[0][-5:]
 	return codigo
+
+def get_url(codigo):
+	"""Dado un codigo(str),
+	devuelve url(str)"""
+	url="http://www.aemet.es/xml/municipios/localidad_"+codigo+".xml"
+	return url
+
+def get_temp(url):
+	"""Dado un url(str),
+	devuelve url(str)"""
+	dia_hoy=time.strftime("%Y-%m-%d")
+	arbol=etree.parse(url)
+	tempmax=arbol.xpath('/root/prediccion/dia[@fecha=dia_hoy]/temperatura/maxima/text()')
+	tempmin=arbol.xpath('/root/prediccion/dia[@fecha=dia_hoy]/temperatura/minima/text()')
+	return tempmax,tempmin
+
+
