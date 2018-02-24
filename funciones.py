@@ -1,3 +1,4 @@
+import time
 def municipio_existe(municipio,arbol):
 	"""Dado un municipio(str)
 	y el arbol(lxml.etree)
