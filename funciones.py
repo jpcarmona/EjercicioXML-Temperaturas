@@ -7,16 +7,15 @@ def municipio_existe(municipio,arbol):
 
 	for muni in municipios:
 		if muni.upper()==municipio.upper():
-			return True
-		else:
-			return False
+			return muni
+	return False
 
 def cod_municipio(municipio,arbol):
 	"""Dado un municipio(str)
 	y el arbol(lxml.etree)
 	de 'sevilla.xml',
 	devuelve codigo(str)"""
-	cod=arbol.xpath('//municipio[contains(text(),municipio)]/@value')
+	cod=arbol.xpath('//municipio[contains(text(),"{}")]/@value'.format(municipio))
 	codigo=cod[0][-5:]
 	return codigo
 
@@ -31,8 +30,8 @@ def get_temp(url):
 	devuelve url(str)"""
 	dia_hoy=time.strftime("%Y-%m-%d")
 	arbol=etree.parse(url)
-	tempmax=arbol.xpath('/root/prediccion/dia[@fecha=dia_hoy]/temperatura/maxima/text()')
-	tempmin=arbol.xpath('/root/prediccion/dia[@fecha=dia_hoy]/temperatura/minima/text()')
+	tempmax=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/maxima/text()'.format(dia_hoy))
+	tempmin=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/minima/text()'.format(dia_hoy))
 	return tempmax,tempmin
 
 
