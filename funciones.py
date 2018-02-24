@@ -4,7 +4,6 @@ def municipio_existe(municipio,arbol):
 	de 'sevilla.xml',
 	verifica si existe(bool)"""
 	municipios=arbol.xpath('//municipio/text()')
-
 	for muni in municipios:
 		if muni.upper()==municipio.upper():
 			return muni
@@ -32,6 +31,6 @@ def get_temp(url):
 	arbol=etree.parse(url)
 	tempmax=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/maxima/text()'.format(dia_hoy))
 	tempmin=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/minima/text()'.format(dia_hoy))
-	return tempmax,tempmin
+	return tempmax[0],tempmin[0]
 
 
