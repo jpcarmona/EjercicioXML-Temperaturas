@@ -16,6 +16,6 @@ while municipio!="0":
 		municipio=municipio_existe(municipio,arbolsevilla)
 		arboltemp=etree.parse(get_url(cod_municipio(municipio,arbolsevilla)))
 		temperaturas=get_temp(arboltemp,dia_hoy)
-		print("La temperatura máxima en {} es de {}º".format(temperaturas[0],municipio))
-		print("La temperatura mínima en {} es de {}º".format(temperaturas[1],municipio))
+		print("La temperatura máxima en {} es de {}º".format(municipio,temperaturas[0]))
+		print("La temperatura mínima en {} es de {}º\n".format(municipio,temperaturas[1]))
 	municipio=input("Introduce un municipio de Sevilla (\"0\" para salir): ")
