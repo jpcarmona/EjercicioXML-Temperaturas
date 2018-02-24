@@ -1,4 +1,3 @@
-import time
 def municipio_existe(municipio,arbol):
 	"""Dado un municipio(str)
 	y el arbol(lxml.etree)
@@ -25,11 +24,9 @@ def get_url(codigo):
 	url="http://www.aemet.es/xml/municipios/localidad_"+codigo+".xml"
 	return url
 
-def get_temp(url):
+def get_temp(arbol,dia_hoy):
 	"""Dado un url(str),
 	devuelve url(str)"""
-	dia_hoy=time.strftime("%Y-%m-%d")
-	arbol=etree.parse(url)
 	tempmax=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/maxima/text()'.format(dia_hoy))
 	tempmin=arbol.xpath('/root/prediccion/dia[@fecha="{}"]/temperatura/minima/text()'.format(dia_hoy))
 	return tempmax[0],tempmin[0]
